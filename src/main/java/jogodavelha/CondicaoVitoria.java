@@ -12,6 +12,20 @@ public enum CondicaoVitoria {
 	VERTICAL_3(new Posicao(0,2), new Posicao(1,2), new Posicao(2,2));
 	
 	private static final String MARCACAO_VITORIA = "*";
+	
+	private static class Posicao {
+
+		public final int linha;
+		public final int coluna;
+		
+		public Posicao(int linha, int coluna) {
+			super();
+			this.linha = linha;
+			this.coluna = coluna;
+		}
+		
+	}
+
 	private Posicao celula1;
 	private Posicao celula2;
 	private Posicao celula3;

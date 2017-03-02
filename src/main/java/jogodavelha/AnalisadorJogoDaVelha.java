@@ -44,12 +44,35 @@ public class AnalisadorJogoDaVelha {
 	}
 
 	private static String gerarJogoIncompleto(String[][] informacoes) {
-		// TODO Auto-generated method stub
-		return null;
+		String[][] jogoProcessado = new String[3][3];
+		for (int linha = 0; linha <= 2; linha++) {
+			for (int coluna = 0; coluna <= 2; coluna++) {
+				String valor = informacoes[linha][coluna];
+				String valorProcessado = valor != null ? valor : "?";
+				String valorParaCelula = " " + valorProcessado + " ";
+				
+				jogoProcessado[linha][coluna] = valorParaCelula;
+			}
+		}
+		
+		String jogoIncompleto = "";
+		for (int linha = 0; linha <= 2; linha++) {
+			jogoIncompleto += jogoProcessado[linha][0] + "|" + jogoProcessado[linha][1] + "|" + jogoProcessado[linha][2] + "\n";
+			if (linha < 2) {
+				jogoIncompleto += "---+---+---\n";
+			}
+		}
+		
+		return jogoIncompleto;
 	}
 
 	private static boolean temCelulaVazia(String[][] informacoes) {
-		// TODO Auto-generated method stub
+		for (int linha = 0; linha <= 2; linha++) {
+			for (int coluna = 0; coluna <= 2; coluna++) {
+				if (informacoes[linha][coluna] == null)
+					return true;
+			}
+		}
 		return false;
 	}
 

@@ -11,7 +11,7 @@ public enum CondicaoVitoria {
 	VERTICAL_2(new Posicao(0,1), new Posicao(1,1), new Posicao(2,1)),
 	VERTICAL_3(new Posicao(0,2), new Posicao(1,2), new Posicao(2,2));
 	
-	private static final String MARCACAO_VITORIA = " * ";
+	private static final String MARCACAO_VITORIA = "*";
 	private Posicao celula1;
 	private Posicao celula2;
 	private Posicao celula3;
@@ -62,7 +62,7 @@ public enum CondicaoVitoria {
 		return resposta;
 	}
 
-	private void adicionarMarcacoesVitoria(String[][] jogoProcessado) {
+	public void adicionarMarcacoesVitoria(String[][] jogoProcessado) {
 		jogoProcessado[celula1.linha][celula1.coluna] = MARCACAO_VITORIA;
 		jogoProcessado[celula2.linha][celula2.coluna] = MARCACAO_VITORIA;
 		jogoProcessado[celula3.linha][celula3.coluna] = MARCACAO_VITORIA;

@@ -15,55 +15,16 @@ public class AnalisadorJogoDaVelha {
 		
 		boolean alguemGanhouOJogo = condicaoVitoriosa != null;
 		if (alguemGanhouOJogo) {
-			String resposta = jogo + 
-					"===========\n" + 
-					condicaoVitoriosa.gerarJogo(informacoes) +
-					"===========\n" +
-					condicaoVitoriosa.getMensagemVitoria(informacoes);
-			
-			return resposta;
+			String mensagemVitoria = condicaoVitoriosa.getMensagemVitoria(informacoes);
+			condicaoVitoriosa.adicionarMarcacoesVitoria(informacoes);
+			return ImpressaoJogo.imprimir(jogo, informacoes, ' ', mensagemVitoria);
 		}
 		
 		if (temCelulaVazia(informacoes)) {
-			String resposta = jogo + 
-					"===========\n" + 
-					gerarJogoIncompleto(informacoes) +
-					"===========\n" +
-					"Impossível dar resposta porque o jogo está incompleto.";
-			
-			return resposta;
+			return ImpressaoJogo.imprimir(jogo, informacoes, '?', "Impossível dar resposta porque o jogo está incompleto.");
 		}
 		
-		String resposta = jogo + 
-				"===========\n" + 
-				jogo +
-				"===========\n" +
-				"Jogo finalizado. Empate!";
-		
-		return resposta;
-	}
-
-	private static String gerarJogoIncompleto(String[][] informacoes) {
-		String[][] jogoProcessado = new String[3][3];
-		for (int linha = 0; linha <= 2; linha++) {
-			for (int coluna = 0; coluna <= 2; coluna++) {
-				String valor = informacoes[linha][coluna];
-				String valorProcessado = valor != null ? valor : "?";
-				String valorParaCelula = " " + valorProcessado + " ";
-				
-				jogoProcessado[linha][coluna] = valorParaCelula;
-			}
-		}
-		
-		String jogoIncompleto = "";
-		for (int linha = 0; linha <= 2; linha++) {
-			jogoIncompleto += jogoProcessado[linha][0] + "|" + jogoProcessado[linha][1] + "|" + jogoProcessado[linha][2] + "\n";
-			if (linha < 2) {
-				jogoIncompleto += "---+---+---\n";
-			}
-		}
-		
-		return jogoIncompleto;
+		return ImpressaoJogo.imprimir(jogo, informacoes, '+', "Jogo finalizado. Empate!");
 	}
 
 	private static boolean temCelulaVazia(String[][] informacoes) {
